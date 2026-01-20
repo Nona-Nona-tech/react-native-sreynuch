@@ -34,7 +34,7 @@ export default function LoginScreen() {
       />
 
       <TouchableOpacity style={styles.forgotWrapper}>
-        <Text style={styles.forgotText}>Forgot Password?</Text>
+        <Text style={styles.forgotText}>Forgot Password?  </Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.loginButton}>
