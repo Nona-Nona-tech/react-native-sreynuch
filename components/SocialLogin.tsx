@@ -5,9 +5,15 @@ import styles from '../styles/loginStyles';
 export default function SocialLogin() {
   return (
     <View style={styles.socialWrapper}>
-      <FontAwesome name="google" size={30} color="#DB4437" />
-      <FontAwesome name="apple" size={30} color="black" />
-      <FontAwesome name="facebook" size={30} color="#4267B2" />
+      <View style={styles.circleIcon}>
+         <FontAwesome name="google" size={25} color="red" />
+      </View>
+      <View style={styles.circleIcon}>
+        <FontAwesome name="apple" size={25} color="black" />
+      </View>
+      <View style={styles.circleIcon}>
+        <FontAwesome name="facebook" size={25} color="#4267B2" />
+      </View>
     </View>
   );
 }

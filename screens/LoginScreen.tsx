@@ -7,15 +7,25 @@ import styles from '../styles/loginStyles';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [username, setUsername] = useState('');
+
+  const handleUsername = (text: string) => {
+    setUsername(text);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Welcome Back!</Text>
-
-      <InputField icon="user" placeholder="Username or Email" secure={false} />
+      <Text style={styles.title}> Welcome</Text>
+      <Text style={styles.title}> Back !</Text>
 
       <InputField
-        icon="lock"
+        icon="user"
+        placeholder="Username or Email"
+        secure={false}
+        onChangeText={handleUsername}
+      />
+      <InputField
+        icon="unlock-keyhole"
         placeholder="Password"
         secure={!passwordVisible}
         toggleSecure={() => setPasswordVisible(!passwordVisible)}
@@ -32,7 +42,6 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       <Text style={styles.or}>- OR Continue with -</Text>
-
       <SocialLogin />
 
       <Text style={styles.signup}>
