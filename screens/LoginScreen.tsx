@@ -1,52 +1,73 @@
-import { useState } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
-import { FontAwesome, Feather } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import InputField from '../components/InputField';
 import SocialLogin from '../components/SocialLogin';
-import styles from '../styles/loginStyles';
+import {loginStyles} from '../styles/loginStyles';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/navigation';
+import { FontAwesome,Feather } from '@expo/vector-icons';
+
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleUsername = (text: string) => {
-    setUsername(text);
+  const navigation = useNavigation<LoginScreenNavigationProp>();
+
+  const handleLogin = () => {
+    if (!username || !password) {
+      Alert.alert('Please enter both username/email and password');
+      return;
+    }
+    Alert.alert('Login successful!');
+  
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}> Welcome</Text>
-      <Text style={styles.title}> Back !</Text>
+    <SafeAreaView style={loginStyles.container}>
+      <Text style={loginStyles.title}> Welcome</Text>
+      <Text style={loginStyles.title}> Back!</Text>
 
       <InputField
         icon="user"
         placeholder="Username or Email"
         secure={false}
-        onChangeText={handleUsername}
+        value={username}
+        onChangeText={setUsername}
       />
+
       <InputField
-        icon="unlock-keyhole"
+        icon="lock"
         placeholder="Password"
         secure={!passwordVisible}
         toggleSecure={() => setPasswordVisible(!passwordVisible)}
         showEye={true}
         eyeVisible={passwordVisible}
+        value={password}
+        onChangeText={setPassword}
       />
 
-      <TouchableOpacity style={styles.forgotWrapper}>
-        <Text style={styles.forgotText}>Forgot Password?  </Text>
+      <TouchableOpacity style={loginStyles.forgotWrapper}>
+        <Text style={loginStyles.forgotText}>Forgot Password?  </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.loginText}>Login</Text>
+      <TouchableOpacity style={loginStyles.loginButton} onPress={handleLogin}>
+        <Text style={loginStyles.loginText}>Login</Text>
       </TouchableOpacity>
 
-      <Text style={styles.or}>- OR Continue with -</Text>
+      <Text style={loginStyles.ortext}>- OR Continue with -</Text>
       <SocialLogin />
 
-      <Text style={styles.signup}>
-        Create An Account <Text style={styles.signupLink}>Sign Up</Text>
-      </Text>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <Text style={loginStyles.linkText}>Create An Account?<Text style={loginStyles.signupLink}> Sign Up</Text>
+        </Text>
+       
+        
+    </TouchableOpacity>
     </SafeAreaView>
   );
 }

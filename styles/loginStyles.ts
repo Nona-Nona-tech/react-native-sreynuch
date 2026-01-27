@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-export default StyleSheet.create({
+export const loginStyles= StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   icon: {
-    marginRight: 16,
+    marginRight: 15,
   },
   input: {
     flex: 1,
@@ -31,7 +31,9 @@ export default StyleSheet.create({
     fontSize: 14
   },
   eyeIcon: {
-    padding: 10,
+    marginLeft: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   forgotWrapper: {
     alignItems: 'flex-end',
@@ -43,7 +45,7 @@ export default StyleSheet.create({
   },
   loginButton: {
     backgroundColor: 'red',
-    padding: 15,
+    paddingVertical: 12,
     borderRadius: 20,
     marginBottom: 10,
     width: '99%',
@@ -52,12 +54,15 @@ export default StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontSize: 18,
   
   },
-  or: {
+  ortext: {
     textAlign: 'center',
     marginBottom: 20,
-    
+    color: 'black',
+    fontWeight: 'bold',
+    marginVertical: 15,
   },
   socialWrapper: {
     flexDirection: 'row',
@@ -82,5 +87,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+  linkText:{
+    textAlign: 'center',
+    marginTop: 10,
+    color: 'black',
+    fontWeight: 'bold',
+  },
 });

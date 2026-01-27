@@ -1,7 +1,6 @@
 import { View, TextInput, TouchableOpacity } from 'react-native';
-import { FontAwesome6, Feather } from '@expo/vector-icons';
-
-import styles from '../styles/loginStyles';
+import { FontAwesome, Feather } from '@expo/vector-icons';
+import { loginStyles } from '../styles/loginStyles';
 
 interface Props {
   icon: string;
@@ -11,6 +10,7 @@ interface Props {
   showEye?: boolean;
   eyeVisible?: boolean;
   toggleSecure?: () => void;
+  value?: string;
 }
 
 const InputField = ({
@@ -21,25 +21,26 @@ const InputField = ({
   showEye = false,
   eyeVisible = false,
   toggleSecure,
+  value,
+
+  
 }: Props) => {
   return (
-    <View style={styles.inputWrapper}>
-      <View style={styles.icon}>
-        {icon === 'user' ? (
-          <FontAwesome6 name="user" size={20} color="black" />
-        ) : (
-          <FontAwesome6 name="unlock-keyhole" size={20} color="black" />
-        )}
+    <View style={loginStyles.inputWrapper}>
+      <View style={loginStyles.icon}>
+        <FontAwesome name={icon as any} size={20} color="black" />
       </View>
+
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="black"
         secureTextEntry={secure}
-        style={styles.input}
+        style={loginStyles.input}
         onChangeText={onChangeText}
+        value={value}
       />
-      {showEye && (
-        <TouchableOpacity onPress={toggleSecure} style={styles.eyeIcon}>
+      {showEye && toggleSecure && (
+        <TouchableOpacity onPress={toggleSecure} style={loginStyles.eyeIcon}>
           <Feather
             name={eyeVisible ? 'eye' : 'eye-off'}
             size={20}
